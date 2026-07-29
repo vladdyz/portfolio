@@ -10,7 +10,7 @@ export default function TechTag({ name }: TechTagProps) {
 
   return (
     <li className={styles.tag}>
-      {Icon && <Icon className={styles.icon} aria-hidden="true" />}
+      {Icon && <Icon  aria-hidden="true" />}
       <span>{name}</span>
     </li>
   );

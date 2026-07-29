@@ -33,6 +33,7 @@ import {
   SiJsonwebtokens,
 } from 'react-icons/si';
 
+
 // Keyed by the exact string used in `projects.ts` / `About.tsx`. Add an
 // entry here any time you add a tag that has a real brand icon — anything
 // missing just renders as a plain text pill, which is a fine fallback.
