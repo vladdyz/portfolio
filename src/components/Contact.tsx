@@ -37,7 +37,7 @@ export default function Contact() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent(i => (i + 1) % photos.length);
-    }, 24000);
+    }, 16000);
     return () => clearInterval(timer);
   }, []);
 

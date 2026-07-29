@@ -11,6 +11,14 @@ export type ProjectStatus =
   | 'browser-playable'  // e.g. a WebGL build, playable without downloading anything
   | 'download-to-play'; // ships as an installer/executable
 
+export interface VideoMediaItem {
+  type: 'video';
+  src: string;    // e.g. '/videos/desert-storm-clip.mp4'
+  poster: string; // thumbnail shown before play, e.g. '/images/desert-storm-poster.jpg'
+}
+
+export type MediaItem = string | VideoMediaItem;
+
 export interface ProjectLinks {
   demo?: string;    // live deployed URL
   repo?: string;    // primary source repo
@@ -29,7 +37,7 @@ export interface Project {
   description: string;    // a few sentences — purpose + approach
   stack: string[];
   highlights?: string[];  // short, specific, resume-bullet-style call-outs
-  images?: string[];      // screenshots for the card media area; 2+ enables the carousel
+  images?: MediaItem[];    // screenshots for the card media area; 2+ enables the carousel - now supporting videos
   links: ProjectLinks;
   status: ProjectStatus;
   statusLabel?: string;   // override the default label derived from `status`
