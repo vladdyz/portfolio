@@ -1,0 +1,46 @@
+:root {
+  /* Default Dark theme */
+  --color-bg: #10141b;
+  --color-bg-rgb: 16, 20, 27;
+  --color-surface: #1a212c;
+  --color-surface-hover: #212936;
+  --color-border: #2a323f;
+  --color-text: #e9ebef;
+  --color-text-muted: #8d96a6;
+  --color-text-muted-rgb: 141, 150, 166;
+  --color-accent: #3fb8af;       /* live / pass / primary interactive */
+  --color-accent-rgb: 63, 184, 175;
+  --color-accent-warm: #e8a33d;  /* pending / build / secondary accent */
+  --color-accent-warm-rgb: 232, 163, 61;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --radius-card: 14px;
+  --header-height: 72px;
+}
+
+/* Light theme */
+:root[data-theme='light'] {
+  --color-bg: #ffffff;
+  --color-bg-rgb: 255, 255, 255;
+  --color-surface: #f5f6f8;
+  --color-surface-hover: #eceef1;
+  --color-border: #e0e3e8;
+  --color-text: #12161b;
+  --color-text-muted: #5b6472;
+  --color-text-muted-rgb: 91, 100, 114;
+  --color-accent: #0f766e;
+  --color-accent-rgb: 15, 118, 110;
+  --color-accent-warm: #b45309;
+  --color-accent-warm-rgb: 180, 83, 9;
+}
+
+/*
+  Every color usage elsewhere is tied to these variables (never a hardcoded
+  hex/rgba) specifically so the toggle works everywhere at once. The *-rgb
+  companions exist because CSS can't pull channels out of a hex value —
+  they're only needed for rgba()-based tints (hover glows, status badge
+  backgrounds), always kept in sync with their hex counterpart above.
+*/
