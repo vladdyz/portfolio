@@ -150,7 +150,7 @@ export const projects: Project[] = [
       'Configurable settings, key mapping, interactive UI and HUD'
     ],
     links: {
-      download: 'https://github.com/YOUR_USERNAME/desert-storm-1991/releases', 
+      //download: 'https://github.com/TEMPORARILY/desert-storm-1991/releases', 
       // itch: '', // TODO: add once the WebGL build is live the status should be flipped to 'browser-playable'
     },
     status: 'download-to-play',
