@@ -1,5 +1,3 @@
-// Data-driven project list. To add a project later: append an object to
-// the `projects` array below — no component changes needed.
 const BASE = import.meta.env.BASE_URL;
 
 
@@ -13,8 +11,8 @@ export type ProjectStatus =
 
 export interface VideoMediaItem {
   type: 'video';
-  src: string;    // e.g. '/videos/desert-storm-clip.mp4'
-  poster: string; // thumbnail shown before play, e.g. '/images/desert-storm-poster.jpg'
+  src: string;    // the video itself
+  poster: string; // thumbnail shown before play
 }
 
 export type MediaItem = string | VideoMediaItem;
@@ -147,8 +145,8 @@ export const projects: Project[] = [
       'Solo end-to-end ownership: design, implementation, and QA',
     ],
     links: {
-      download: 'https://github.com/YOUR_USERNAME/desert-storm-1991/releases', // TODO: your release URL
-      // itch: '', // TODO: add once the WebGL build is live — flip status to 'browser-playable'
+      download: 'https://github.com/YOUR_USERNAME/desert-storm-1991/releases', 
+      // itch: '', // TODO: add once the WebGL build is live the status should be flipped to 'browser-playable'
     },
     status: 'download-to-play',
   },
