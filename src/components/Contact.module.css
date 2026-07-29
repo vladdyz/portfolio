@@ -120,3 +120,35 @@
   color: var(--color-text-muted);
   margin: 0;
 }
+
+
+.photo {
+    /*width: 100%;*/
+    max-width: 600px;
+    max-height: 450px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 16px;
+
+    animation: fadeIn 0.8s ease;
+}
+
+.caption {
+    margin-top: 0.75rem;
+    text-align: center;
+    color: var(--text-secondary);
+
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

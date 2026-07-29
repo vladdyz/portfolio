@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import Section from './Section';
 import styles from './Contact.module.css';
 
@@ -7,8 +7,40 @@ type Status = 'idle' | 'sending' | 'success' | 'error';
 // Public key, can use it in client side code
 const WEB3FORMS_ACCESS_KEY = '841c7dd9-43dc-4b3f-bf06-b8adb784fb72';
 
+const photos = [
+  {
+    src: `${import.meta.env.BASE_URL}images/readingSpot.JPG`,
+    alt: "Favorite reading spot",
+    caption: "My favorite place to enjoy a good book in Toronto."
+  },
+  {
+    src: `${import.meta.env.BASE_URL}images/cherryBlossoms.JPG`,
+    alt: "Cherry blossoms",
+    caption: "Cherry blossom bloom in High Park during the spring."
+  },
+  {
+    src: `${import.meta.env.BASE_URL}images/garden.jpg`,
+    alt: "Garden",
+    caption: "A flower garden I planted for my mother."
+  },
+   {
+    src: `${import.meta.env.BASE_URL}images/mountArenal.JPG`,
+    alt: "Volcano",
+    caption: "Taken while climbing Mount Arenal in Costa Rica on a sunny day."
+  }
+];
+
 export default function Contact() {
   const [status, setStatus] = useState<Status>('idle');
+
+  const [current, setCurrent] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(i => (i + 1) % photos.length);
+    }, 24000);
+    return () => clearInterval(timer);
+  }, []);
+
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,10 +78,16 @@ export default function Contact() {
       description="Have a role in mind, or a question about a project? Send a message."
     >
       <div className={styles.layout}>
-        {/* TODO: swap this for an image, illustration, or animation.
-            Delete the placeholder div entirely once you have something. */}
-        <div className={styles.visual} aria-hidden="true">
-          <p className={styles.visualHint}>Add an image, illustration, or animation here</p>
+          <div className={styles.visual}>
+          <img
+            src={photos[current].src}
+            alt={photos[current].alt}
+            className={styles.photo}
+          />
+
+          <p className={styles.caption}>
+            {photos[current].caption}
+          </p>
         </div>
 
         <div className={styles.card}>
