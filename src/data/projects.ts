@@ -147,7 +147,8 @@ export const projects: Project[] = [
       'Character class selection system with diverse weapon system',
       'State management allows saving/loading games',
       'Level progression with environment variation, progressive difficulty, and immersive setting',
-      'Configurable settings, key mapping, interactive UI and HUD'
+      'Configurable settings, key mapping, interactive UI and HUD',
+      'More than 3 distinct levels and 75 unique playable rooms'
     ],
     links: {
       //download: 'https://github.com/TEMPORARILY/desert-storm-1991/releases', 
