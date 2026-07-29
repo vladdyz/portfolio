@@ -227,13 +227,27 @@ export const projects: Project[] = [
   },
   {
     id: 'kens-lab',
-    title: 'Kens Labyrinth Modded OpenGL', // TODO: real title
+    title: 'Kens Labyrinth Modded OpenGL',
     category: 'game',
-    tagline: 'Source code modification of the MS-DOS game ',
-    description: 'Currently in Development',
-    stack: ['C', 'OpenGL'],
+    images: [ { type: 'video', src: `${BASE}videos/KensLab.mp4`, poster: `${BASE}images/KensLab.png` }],
+    tagline: 'A liminal-horror total conversion of the 1993 MS-DOS first person shooter Ken\'s Labyrinth, with a from-scratch OpenGL renderer built on its original C engine.',
+    /*description: 'A liminal first person shooter game built atop the publicly available' +
+    ' source code from Ken\' Labyrinth released by Ken Silverman and LAB3D/SDL open source port' +
+    ' by Jan Lönnberg and Katie Stafford. Makes extensive modifications to the original engine ( ' +
+    'written in C and compiled using TurboC), supported by custom Python and C scripts for LZW ' +
+    'compression, diagnostics, and format conversion. Contains 20+ new maps with custom assets and' +
+    'implementation. ' +
+    'Currently in Development',
+    */
+    description: 'A total-conversion mod of Ken\'s Labyrinth, the 1993 MS-DOS first-person shooter by Ken Silverman, ' +
+    'built on the LAB3D/SDL open-source engine port (Jan Lönnberg and Katie Stafford). Reworks the ' +
+    'original C/TurboC engine with a custom OpenGL renderer and ships 20+ new levels built around a ' +
+    'liminal, backrooms-style aesthetic. Supported by a set of custom Python and C tools to handle LZW decompression, ' +
+    'format conversion, and diagnostics for the engine\'s original proprietary asset formats. ' +
+    'Currently in active development.',
+    stack: ['C', 'OpenGL', 'Python'],
     links: {
-      // download: '', // TODO: zip/installer via GitHub Releases
+      repo: 'https://github.com/vladdyz/klab', 
     },
     status: 'download-to-play',
   },
