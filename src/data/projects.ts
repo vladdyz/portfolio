@@ -59,7 +59,7 @@ export const projects: Project[] = [
          `${BASE}images/fragmentsTypesConvert.png`,
          `${BASE}images/fragmentslcloudwatch.png`,
          `${BASE}images/fragmentslcov.png`,
-         `${BASE}images/fragmentsTests.png'` ],
+         `${BASE}images/fragmentsTests.png` ],
     //period: 'Sep 2025 – Dec 2025',
     tagline:
       'Cloud-based microservice (AWS) for handling and transforming data with Cognito Authentication, CI/CD, and a separate front-end UI',
