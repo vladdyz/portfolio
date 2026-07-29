@@ -212,7 +212,7 @@ export const projects: Project[] = [
     ],
     links: {
       repo: 'https://github.com/vladdyz/ComeOnInn',
-      video: '', // TODO: this app is a strong demo-video candidate — the booking→payment→checkout→loyalty flow is easy to narrate
+      video: 'https://www.youtube.com/watch?v=eSIzd_ONONo', 
     },
     status: 'source-only',
     statusLabel: 'Source + demo video',
@@ -221,8 +221,8 @@ export const projects: Project[] = [
     id: 'kens-lab',
     title: 'Kens Labyrinth Modded OpenGL', // TODO: real title
     category: 'game',
-    tagline: 'TODO: one-line pitch.',
-    description: 'TODO: what it is, what you built, what you\'re proud of.',
+    tagline: 'Source code modification of the MS-DOS game ',
+    description: 'Currently in Development',
     stack: ['C', 'OpenGL'],
     links: {
       // download: '', // TODO: zip/installer via GitHub Releases
