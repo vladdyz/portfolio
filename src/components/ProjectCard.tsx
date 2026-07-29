@@ -15,6 +15,7 @@ const LINK_LABELS: Record<keyof ProjectLinks, string> = {
   video: 'Demo video',
   itch: 'Play on itch.io',
   download: 'Download',
+  tools: 'Tools',
 };
 
 function isVideoItem(item: MediaItem): item is { type: 'video'; src: string; poster: string } {

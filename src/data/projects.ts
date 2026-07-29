@@ -26,6 +26,7 @@ export interface ProjectLinks {
   video?: string;   // short demo/walkthrough recording
   itch?: string;    // itch.io page (games)
   download?: string; // build/installer download (GitHub Releases, etc.)
+  tools?: string; // additional tools/scripts related to the project
 }
 
 export interface Project {
@@ -133,6 +134,7 @@ export const projects: Project[] = [
     id: 'desert-storm-1991',
     title: 'Desert Storm: 1991',
     category: 'game',
+      images: [ { type: 'video', src: `${BASE}videos/DS.mp4`, poster: `${BASE}images/PxF.png` }],
     //period: 'Sep 2025 – Present',
     tagline: '2D tactical roguelike with procedurally generated missions, built solo as a capstone project.',
     description:
@@ -247,7 +249,8 @@ export const projects: Project[] = [
     'Currently in active development.',
     stack: ['C', 'OpenGL', 'Python'],
     links: {
-      repo: 'https://github.com/vladdyz/klab', 
+      repo: 'https://github.com/vladdyz/klab-modded-build',
+      tools: 'https://github.com/vladdyz/klab', 
     },
     status: 'download-to-play',
   },
