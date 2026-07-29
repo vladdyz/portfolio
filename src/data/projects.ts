@@ -1,5 +1,7 @@
 // Data-driven project list. To add a project later: append an object to
 // the `projects` array below — no component changes needed.
+const BASE = import.meta.env.BASE_URL;
+
 
 export type ProjectCategory = 'webapp' | 'repository' | 'game';
 
@@ -51,13 +53,13 @@ export const projects: Project[] = [
     id: 'fragments',
     title: 'Fragments',
     category: 'repository',
-    images: ['/images/fragmentsUI.png', 
-        '/images/fragments2.png', 
-        '/images/fragmentsTypes.png', 
-        '/images/fragmentsTypesConvert.png',
-        '/images/fragmentslcloudwatch.png',
-        '/images/fragmentslcov.png',
-        '/images/fragmentsTests.png' ],
+    images: [ `${BASE}images/fragmentsUI.png`, 
+         `${BASE}images/fragments2.png`, 
+         `${BASE}images/fragmentsTypes.png`, 
+         `${BASE}images/fragmentsTypesConvert.png`,
+         `${BASE}images/fragmentslcloudwatch.png`,
+         `${BASE}images/fragmentslcov.png`,
+         `${BASE}images/fragmentsTests.png'` ],
     //period: 'Sep 2025 – Dec 2025',
     tagline:
       'Cloud-based microservice (AWS) for handling and transforming data with Cognito Authentication, CI/CD, and a separate front-end UI',
@@ -89,11 +91,11 @@ export const projects: Project[] = [
     title: 'Offroad Adventures',
     category: 'webapp',
     //period: 'Jul 2024 – Present',
-    images: ['/images/OffroadHome.png', 
-        '/images/OffroadMap.png', 
-        '/images/OffroadLogin.png', 
-        '/images/OffroadCamp.png',
-        '/images/OffroadAlgon.png',
+    images: [ `${BASE}images/OffroadHome.png`, 
+         `${BASE}images/OffroadMap.png`, 
+         `${BASE}images/OffroadLogin.png`, 
+         `${BASE}images/OffroadCamp.png`,
+         `${BASE}images/OffroadAlgon.png`,
      ],
     tagline: 'Full-stack location-based review platform architecture with live map and lazy-loaded browsing.',
     description:
@@ -144,7 +146,7 @@ export const projects: Project[] = [
     id: 'self-driving-car-simulator',
     title: 'Self Driving Car Simulation', 
     category: 'repository',
-    images: ['/images/selfdrive1.png'],
+    images: [ `${BASE}images/selfdrive1.png`],
     tagline: 'Convolutional Neural Network to simulate a self-driving car',
     /*
     This way way too verbose
@@ -187,9 +189,9 @@ export const projects: Project[] = [
     id: 'come-on-inn',
     title: 'Come On Inn',
     category: 'repository',
-    images: ['/images/ComeOnInn1.png', '/images/ComeOnInn3.png', 
-        '/images/ComeOnInn4.png', '/images/ComeOnInn5.png', '/images/ComeOnInn6.png',
-        '/images/ComeOnInn7.png', '/images/ComeOnInn8.png',
+    images: [ `${BASE}images/ComeOnInn1.png`, `${BASE}images/ComeOnInn3.png`, 
+         `${BASE}images/ComeOnInn4.png`,  `${BASE}images/ComeOnInn5.png`,  `${BASE}images/ComeOnInn6.png`,
+         `${BASE}images/ComeOnInn7.png`,  `${BASE}images/ComeOnInn8.png`,
     ],
     tagline: '3-tier JavaFX hotel management system with Hibernate ORM, Guice dependency injection, and role-based admin controls.',
     description:
@@ -231,11 +233,11 @@ export const projects: Project[] = [
     id: 'merchstore',
     title: 'Merch Apparel Store',
     category: 'webapp',
-    images: ['/images/Merch1.png', 
-        '/images/Merch2.png', 
-        '/images/Merch3.png', 
-        '/images/Merch4.png',
-        '/images/Merch5.png'
+    images: [ `${BASE}images/Merch1.png`, 
+         `${BASE}images/Merch2.png`, 
+         `${BASE}images/Merch3.png`, 
+         `${BASE}images/Merch4.png`,
+        `${BASE}images/Merch5.png`
      ],
     //period: 'May - Aug 2024',
     tagline: 'React e-commerce app with auth integration and cypress/jest.',
@@ -265,7 +267,7 @@ export const projects: Project[] = [
     id: 'assembly-line',
     title: 'Assembly Line', 
     category: 'repository',
-    images: ['/images/Assembly1.png'],
+    images: [ `${BASE}images/Assembly1.png`],
     tagline: 'Simulates an assembly line system for processing and fulfilling customer orders',
     description: 'A program created to simulate an assembly line system for processing and ' +
     'fulfilling customer orders through various stations. The assembly line consists of a set ' +
