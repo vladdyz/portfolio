@@ -136,13 +136,18 @@ export const projects: Project[] = [
     //period: 'Sep 2025 – Present',
     tagline: '2D tactical roguelike with procedurally generated missions, built solo as a capstone project.',
     description:
-      'A Unity/C# tactical roguelike where every mission is assembled from node-graph level templates, ' +
-      'so no two playthroughs lay out the same. Built as a capstone project, serving as lead designer, ' +
-      'programmer, and QA tester.',
+      'A Unity/C# tactical roguelike military shooter where every mission is assembled from node-graph level templates, ' +
+      'emphasizing replayability (no two playthroughs are the same) and strategic gameplay. Built as a capstone project, serving as lead designer, ' +
+      'programmer, and QA tester. ',
     stack: ['Unity', 'C#', 'Procedural generation'],
     highlights: [
       'Node-graph template system drives procedural level generation',
       'Solo end-to-end ownership: design, implementation, and QA',
+      'A* algorithm for enemy AI',
+      'Character class selection system with diverse weapon system',
+      'State management allows saving/loading games',
+      'Level progression with environment variation, progressive difficulty, and immersive setting',
+      'Configurable settings, key mapping, interactive UI and HUD'
     ],
     links: {
       download: 'https://github.com/YOUR_USERNAME/desert-storm-1991/releases', 
