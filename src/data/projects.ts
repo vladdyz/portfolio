@@ -211,8 +211,8 @@ export const projects: Project[] = [
     description:
       'A full desktop hotel management system built entirely in Java, covering the guest lifecycle ' +
       'from a self-serve booking kiosk through checkout, loyalty points, and post-stay feedback. ' +
-      'Follows a 3-tier MVC architecture — JavaFX/FXML views, a service/controller layer enforcing ' +
-      'business rules, and a Hibernate-mapped H2 database — with Guice handling dependency injection ' +
+      'Built using JavaFX/FXML views, a service/controller layer enforcing ' +
+      'business rules, and a Hibernate-mapped H2 database, with Guice handling dependency injection ' +
       'throughout. Role-based admin accounts manage reservations, inventory, and configurable pricing ' +
       'policies, with full audit logging and export to PDF, CSV, and TXT.',
     stack: ['Java', 'JavaFX', 'Hibernate', 'Guice', 'H2', 'Maven', 'BCrypt', 'SLF4J'],
@@ -236,7 +236,7 @@ export const projects: Project[] = [
     title: 'Kens Labyrinth Modded OpenGL',
     category: 'game',
     images: [ { type: 'video', src: `${BASE}videos/KensLab.mp4`, poster: `${BASE}images/KensLab.png` }],
-    tagline: 'A liminal-horror total conversion of the 1993 MS-DOS first person shooter Ken\'s Labyrinth, with a from-scratch OpenGL renderer built on its original C engine.',
+    tagline: 'A liminal-horror total conversion of the 1993 MS-DOS first person shooter Ken\'s Labyrinth by Ken Silverman.',
     /*description: 'A liminal first person shooter game built atop the publicly available' +
     ' source code from Ken\' Labyrinth released by Ken Silverman and LAB3D/SDL open source port' +
     ' by Jan Lönnberg and Katie Stafford. Makes extensive modifications to the original engine ( ' +
@@ -245,15 +245,24 @@ export const projects: Project[] = [
     'implementation. ' +
     'Currently in Development',
     */
-    description: 'A total-conversion mod of Ken\'s Labyrinth, the 1993 MS-DOS first-person shooter by Ken Silverman, ' +
-    'built on the LAB3D/SDL open-source engine port (Jan Lönnberg and Katie Stafford). Reworks the ' +
-    'original C/TurboC engine with a custom OpenGL renderer and ships 20+ new levels built around a ' +
-    'liminal, backrooms-style aesthetic. Supported by a set of custom Python and C tools to handle LZW decompression, ' +
-    'format conversion, and diagnostics for the engine\'s original proprietary asset formats. ' +
-    'Currently in active development.',
-    stack: ['C', 'OpenGL', 'Python'],
+    description: 'A total-conversion mod ' +
+    'built on the LAB3D/SDL open-source engine port (Jan Lönnberg and Katie Stafford). Makes extensive modifications to the  ' +
+    'original C engine (still built with TurboC for compatibility) spanning gameplay features, custom behaviors, raising internal engine ' +
+    'limitations, and ships 20+ new levels built around a ' +
+    'liminal, backrooms-style aesthetic. Supported by a set of custom Python and C tools to handle the proprietary LZW-compressed format of the, ' +
+    'source engine, a format conversion pipeline, and diagnostics to verify byte-level compatibility after each conversion. ' +
+    'Currently in active development with a hardware-accelerated renderer and modern music format support planned next.',
+    stack: ['C', 'Python'],
+    highlights: [
+      'Raised the original engine hardcoded texture limit by modifying core macros and structural code',
+      'Implemented new gameplay features (hazard floors, pits) and significantly increased enemy roster, custom defined behaviors, and texture variety',
+      'Asset pipeline converting between proprietary LZW-compressed format, raw DAT, and editable tilemaps',
+      'Diagnostic tool that byte-compares KZP headers, tile-length tables, and file sizes to catch compression mismatches before they reach the game',
+      '20+ original levels built around a liminal, backrooms-style aesthetic, a significant tonal departure from the source game',
+    ],
     links: {
-      repo: 'https://github.com/vladdyz/klab-modded-build',
+      repo: 'https://github.com/vladdyz/lab3d-sdl-modded-src',
+      download: 'https://github.com/vladdyz/klab-modded-build',
       tools: 'https://github.com/vladdyz/klab', 
     },
     status: 'download-to-play',
@@ -344,5 +353,30 @@ export const projects: Project[] = [
     status: 'source-only',
     statusLabel: 'Source',
   },
+  // This one feels a bit weak so I am excluding it
+
+  /*
+  {
+    id: 'lego-store',
+    title: 'Lego Store',
+    category: 'webapp',
+    images: [ `${BASE}images/lego1.png`, `${BASE}images/lego2.png`, `${BASE}images/lego4.png`, `${BASE}images/lego5.png`, `${BASE}images/lego6.png`],
+    tagline: 'Full-stack Lego inventory app with a deliberately split MongoDB/PostgreSQL persistence layer.',
+    description:
+      'A CRUD inventory app for Lego sets and themes, built with Express, EJS, and Tailwind/DaisyUI. ' +
+      'PostgreSQL (via Sequelize, hosted on Neon) stores the product catalog, while MongoDB handles ' +
+      'user accounts, bcrypt-hashed credentials, and session-based login history.',
+    stack: ['Node.js', 'Express', 'EJS', 'PostgreSQL', 'Sequelize', 'MongoDB', 'Mongoose', 'Tailwind', 'DaisyUI'],
+    highlights: [
+      'Deliberate polyglot persistence: PostgreSQL/Sequelize for the product catalog, MongoDB/Mongoose for user accounts and sessions',
+      'Login history capped at the 8 most recent entries per user (timestamp + user agent) via a bounded array in MongoDB',
+      'BCrypt-hashed passwords with session-gated CRUD, users can browse the store, but adding, editing, or deleting sets requires an account',
+    ],
+    links: {
+      demo: 'https://vzolotukhin-legoapp.onrender.com/',
+      repo: 'https://github.com/vladdyz/legoapp',
+    },
+    status: 'live',
+  },*/
    
 ];
