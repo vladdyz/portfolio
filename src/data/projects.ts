@@ -128,6 +128,38 @@ export const projects: Project[] = [
     },
     status: 'live',
   },
+   {
+    id: 'git-started',
+    title: 'Git Started',
+    category: 'webapp',
+    images: [ `${BASE}images/Git-Started-1.png`, 
+         `${BASE}images/Git-Started-2.png`, 
+         `${BASE}images/Git-Started-3.png`, 
+         `${BASE}images/Git-Started-4.png`,
+         `${BASE}images/Git-Started-5.png`,
+     ],
+    tagline: 'Full-stack MERN app with AI assistant and session-based auth for open source contributions ',
+    description:
+      'Git Started helps developers find their next open-source contributions by aggregating beginner-friendly ' +
+      'GitHub issues and layers a cost-engineered AI assistant on top for natural-language search. ' + 
+      'Built with session-based auth, bookmarking with notes, opt-in email alerts, and a WCAG 2.1 AA accessibility ' +
+      'pass backed by automated testing. Deployed live on a custom domain with CI/CD via GitHub Actions.',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'Google Gemini API', 'GitHub API', 'Brevo', 'Jest', 'Supertest', 'Tailwind'],
+    highlights: [
+      'Full-stack MERN app aggregating GitHub issues via REST API integration',
+      'Cost-engineered AI matching pipeline (Gemini embeddings + generative ranking) with query caching, rate limiting, and a daily budget',
+      'Session-based authentication (bcrypt, express-session, MongoDB-backed store)',
+      'Authorization-scoped CRUD for bookmarks/alerts, and a scheduled email-notification pipeline (Brevo)',
+      'Image uploads and cloud storage integration using Cloudinary',
+      'Built a WCAG 2.1 AA-oriented accessibility implementation with automated axe-core testing',
+      '99 passing tests (43 client, 56 server) in Vitest/Jest + Supertest + mongodb-memory-server suite run via GitHub Actions CI ',
+    ],
+    links: {
+      demo: 'https://gitstarted.dev/', 
+      repo: 'https://github.com/vladdyz/GitStarted', 
+    },
+    status: 'live',
+  },
   {
     id: 'desert-storm-1991',
     title: 'Desert Storm: 1991',
@@ -249,12 +281,12 @@ export const projects: Project[] = [
     'built on the LAB3D/SDL open-source engine port (Jan Lönnberg and Katie Stafford). Makes extensive modifications to the  ' +
     'original C engine (still built with TurboC for compatibility) spanning gameplay features, custom behaviors, raising internal engine ' +
     'limitations, and ships 20+ new levels built around a ' +
-    'liminal, backrooms-style aesthetic. Supported by a set of custom Python and C tools to handle the proprietary LZW-compressed format of the, ' +
+    'liminal, backrooms-style aesthetic. Supported by a set of custom Python and C tools to handle the proprietary LZW-compressed format of the ' +
     'source engine, a format conversion pipeline, and diagnostics to verify byte-level compatibility after each conversion. ' +
     'Currently in active development with a hardware-accelerated renderer and modern music format support planned next.',
     stack: ['C', 'Python'],
     highlights: [
-      'Raised the original engine hardcoded texture limit by modifying core macros and structural code',
+      'Raised original engine hardcoded texture limit by modifying core macros and structural code',
       'Implemented new gameplay features (hazard floors, pits) and significantly increased enemy roster, custom defined behaviors, and texture variety',
       'Asset pipeline converting between proprietary LZW-compressed format, raw DAT, and editable tilemaps',
       'Diagnostic tool that byte-compares KZP headers, tile-length tables, and file sizes to catch compression mismatches before they reach the game',
