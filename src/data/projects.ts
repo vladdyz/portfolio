@@ -107,8 +107,8 @@ export const projects: Project[] = [
     tagline: 'Full-stack location-based review platform architecture with live map and lazy-loaded browsing.',
     description:
       'A full-stack campground review application built with Node.js, Express, MongoDB, and EJS. ' +
-      'This project demonstrates a full-stack location-based review platform architecture.' +
-      'The underlying design can be adapted to support other location-based domains' +
+      'This project demonstrates a full-stack location-based review platform architecture. ' +
+      'The underlying design can be adapted to support other location-based domains ' +
       'such as restaurants, hotels, museums, heritage sites, or attractions,',
     stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'Jest', 'Supertest', 'GitHub Actions'],
     highlights: [
