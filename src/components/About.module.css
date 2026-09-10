@@ -1,3 +1,21 @@
+/* --- Layout: terminal beside skills --- */
+
+.layout {
+  display: grid;
+  /* minmax(0,...) lets the terminals long lines wrap instead of forcing
+     the column wider than its share. */
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
 /* --- Terminal window --- */
 
 .terminal {
@@ -41,6 +59,8 @@
 }
 
 .body {
+  /* Reserved so the panel doesn't resize line-by-line as text types in. */
+  min-height: 24em;
   padding: 20px 22px 22px;
   font-family: var(--font-mono);
   font-size: 0.86rem;
@@ -123,9 +143,9 @@
 /* --- Skills --- */
 
 .skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .skillGroup {
@@ -151,4 +171,18 @@
   gap: 6px;
   margin: 0;
   padding: 0;
+}
+
+/* Full terminal text, exposed to screen readers only — the animated copy
+   above is aria-hidden so it isn't announced character by character. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
