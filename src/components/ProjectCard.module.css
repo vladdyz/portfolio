@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
@@ -10,13 +11,35 @@
 
 .card:hover,
 .card:focus-within {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
   border-color: var(--color-accent);
-  box-shadow: 0 18px 40px -22px rgba(var(--color-accent-rgb), 0.45), 0 2px 0 var(--color-accent);
+  box-shadow: 0 18px 40px -22px rgba(var(--color-accent-rgb), 0.45);
+}
+
+/* Cursor-tracking glow. --mx/--my are written by the component on mousemove;
+   the gradient is centred on them, so the highlight follows the pointer
+   across the card surface. Sits above the background, below the content. */
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(var(--color-accent-rgb), 0.14),
+    transparent 65%
+  );
+}
+
+.card:hover .glow {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card {
+  .card,
+  .glow {
     transition: none;
   }
   .card:hover,
@@ -25,10 +48,24 @@
   }
 }
 
+/* --- Media --- */
+
 .media {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background: var(--color-bg);
+  z-index: 1;
+}
+
+.mediaButton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+  overflow: hidden;
 }
 
 .image {
@@ -39,53 +76,34 @@
   transition: transform 320ms ease;
 }
 
-.card:hover .image,
-.card:focus-within .image {
-  transform: scale(1.08);
+.card:hover .image {
+  transform: scale(1.06);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .image {
     transition: none;
   }
-  .card:hover .image,
-  .card:focus-within .image {
+  .card:hover .image {
     transform: none;
   }
 }
 
-.videoPoster {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.playButton {
+.expandHint {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  background: rgba(var(--color-bg-rgb), 0.75);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  bottom: 8px;
+  right: 8px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: rgba(var(--color-bg-rgb), 0.85);
   color: var(--color-text);
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 180ms ease;
 }
 
-.playButton svg {
-  width: 18px;
-  height: 18px;
-  margin-left: 2px;
+.card:hover .expandHint {
+  opacity: 1;
 }
 
 .mediaFallback {
@@ -99,44 +117,37 @@
   background: linear-gradient(135deg, var(--color-surface), var(--color-bg));
 }
 
-/* Carousel controls sit on top of arbitrary screenshots, not a themed
-   surface, so their scrim stays a fixed dark overlay in both themes for
-   reliable contrast against whatever image is behind them. */
 .carouselButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: rgba(16, 20, 27, 0.65);
-  color: var(--color-text);
+  color: #fff;
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 999px;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
-}
-
-.carouselButton:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  z-index: 2;
 }
 
 .carouselPrev {
   left: 8px;
 }
-
 .carouselNext {
   right: 8px;
 }
 
 .dots {
   position: absolute;
-  bottom: 10px;
+  bottom: 9px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 6px;
+  gap: 5px;
+  z-index: 2;
 }
 
 .dot {
@@ -144,14 +155,9 @@
   height: 6px;
   border-radius: 999px;
   border: none;
-  background: rgba(233, 235, 239, 0.4);
+  background: rgba(255, 255, 255, 0.45);
   cursor: pointer;
   padding: 0;
-}
-
-.dot:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
 }
 
 .dotActive {
@@ -162,8 +168,9 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 2;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 4px 9px;
@@ -183,16 +190,21 @@
   color: var(--color-accent-warm);
 }
 
+/* --- Body --- */
+
 .body {
-  padding: 18px 20px 20px;
+  position: relative;
+  z-index: 1;
+  padding: 16px 18px 18px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  flex: 1;
 }
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -201,24 +213,40 @@
 
 .title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin: 0;
   color: var(--color-text);
 }
 
 .tagline {
   margin: 0;
-  color: var(--color-text);
-  font-weight: 500;
-  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .description {
   margin: 0;
   color: var(--color-text-muted);
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.highlights {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .stack {
@@ -226,29 +254,30 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   padding: 0;
 }
 
-.highlights {
-  margin: 4px 0 0;
-  padding-left: 18px;
-  color: var(--color-text-muted);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  line-height: 1.5;
+/* Pushed to the bottom so links and the toggle line up across cards in a row. */
+.footer {
+  margin-top: auto;
+  padding-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 10px;
+  gap: 12px;
 }
 
 .link {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--color-accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
@@ -260,7 +289,41 @@
   border-color: currentColor;
 }
 
-.link:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.chevron {
+  display: inline-block;
+  transition: transform 200ms ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chevron,
+  .toggle,
+  .link,
+  .expandHint {
+    transition: none;
+  }
 }

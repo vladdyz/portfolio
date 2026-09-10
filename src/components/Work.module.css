@@ -28,10 +28,20 @@
   color: var(--color-bg);
 }
 
+/* Wider minimum than before (280px -> 380px) as screenshots were too small to read on 
+   laptops. 380px gives 2 cards per row on most laptops and 3  only on wide displays.
+   align-items:start stops an expanded card from stretching the height of its row-mates. */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  align-items: start;
   gap: 24px;
+}
+
+@media (max-width: 460px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

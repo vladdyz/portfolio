@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, type MouseEvent } from 'react';
 import type { Project, ProjectLinks, MediaItem } from '../data/projects';
 import { CATEGORY_LABELS, STATUS_LABELS } from '../data/projects';
 import TechTag from './TechTag';
+import MediaModal from './MediaModal';
 import styles from './ProjectCard.module.css';
 
 interface ProjectCardProps {
@@ -18,54 +19,37 @@ const LINK_LABELS: Record<keyof ProjectLinks, string> = {
   tools: 'Tools',
 };
 
-function isVideoItem(item: MediaItem): item is { type: 'video'; src: string; poster: string } {
+function isVideo(item: MediaItem): item is { type: 'video'; src: string; poster: string } {
   return typeof item !== 'string' && item.type === 'video';
-}
-
-function PlayIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M8 5v14l11-7z" />
-    </svg>
-  );
-}
-
-// Click-to-play: nothing but the poster <img> exists in the DOM until the
-// user opts in, so no video bytes are fetched by default.
-function VideoSlide({ item, title }: { item: { src: string; poster: string }; title: string }) {
-  const [playing, setPlaying] = useState(false);
-
-  if (playing) {
-    return <video className={styles.image} src={item.src} controls autoPlay playsInline />;
-  }
-
-  return (
-    <button
-      type="button"
-      className={styles.videoPoster}
-      onClick={() => setPlaying(true)}
-      aria-label={`Play video — ${title}`}
-    >
-      <img src={item.poster} alt="" className={styles.image} />
-      <span className={styles.playButton} aria-hidden="true">
-        <PlayIcon />
-      </span>
-    </button>
-  );
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { title, category, period, tagline, description, stack, highlights, images, links, status, statusLabel } =
     project;
 
-  const hasImages = Boolean(images && images.length > 0);
-  const hasCarousel = Boolean(images && images.length > 1);
+  const [expanded, setExpanded] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
-  const showPrev = () =>
+  const hasImages = Boolean(images && images.length > 0);
+  const hasCarousel = Boolean(images && images.length > 1);
+  const detailsId = `${project.id}-details`;
+
+  const showPrev = (e: MouseEvent) => {
+    e.stopPropagation();
     setActiveImage((i) => (images ? (i === 0 ? images.length - 1 : i - 1) : 0));
-  const showNext = () =>
+  };
+  const showNext = (e: MouseEvent) => {
+    e.stopPropagation();
     setActiveImage((i) => (images ? (i === images.length - 1 ? 0 : i + 1) : 0));
+  };
+
+  // Feed the pointer position to CSS so the glow overlay can follow it.
+  function handleMouseMove(e: MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  }
 
   const linkEntries = (Object.entries(links) as [keyof ProjectLinks, string | undefined][]).filter(
     (entry): entry is [keyof ProjectLinks, string] => Boolean(entry[1])
@@ -74,27 +58,50 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const activeItem = hasImages ? images![activeImage] : null;
 
   return (
-    <article className={styles.card} data-category={category}>
-      <div className={styles.media}>
-        {activeItem ? (
-          <>
-            {isVideoItem(activeItem) ? (
-              <VideoSlide key={activeImage} item={activeItem} title={title} />
+    <>
+      <article className={styles.card} data-category={category} onMouseMove={handleMouseMove}>
+        <span className={styles.glow} aria-hidden="true" />
+
+        {/* Media and tagline are swapped out for the detail text when expanded,
+            so the card keeps a compact footprint in either state. */}
+        {!expanded && (
+          <div className={styles.media}>
+            {activeItem ? (
+              isVideo(activeItem) ? (
+                <video
+                  className={styles.image}
+                  src={activeItem.src}
+                  poster={activeItem.poster}
+                  controls
+                  playsInline
+                  preload="none"
+                />
+              ) : (
+                <button
+                  type="button"
+                  className={styles.mediaButton}
+                  onClick={() => setModalOpen(true)}
+                  aria-label={`View larger images for ${title}`}
+                >
+                  <img key={activeImage} src={activeItem} alt={`${title} preview`} className={styles.image} />
+                  <span className={styles.expandHint} aria-hidden="true">
+                    ⤢
+                  </span>
+                </button>
+              )
             ) : (
-              <img
-                key={activeImage}
-                src={activeItem}
-                alt={`${title} — slide ${activeImage + 1} of ${images!.length}`}
-                className={styles.image}
-              />
+              <div className={styles.mediaFallback} aria-hidden="true">
+                {title.charAt(0)}
+              </div>
             )}
+
             {hasCarousel && (
               <>
                 <button
                   type="button"
                   className={`${styles.carouselButton} ${styles.carouselPrev}`}
                   onClick={showPrev}
-                  aria-label={`Previous slide for ${title}`}
+                  aria-label={`Previous image for ${title}`}
                 >
                   ‹
                 </button>
@@ -102,18 +109,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   type="button"
                   className={`${styles.carouselButton} ${styles.carouselNext}`}
                   onClick={showNext}
-                  aria-label={`Next slide for ${title}`}
+                  aria-label={`Next image for ${title}`}
                 >
                   ›
                 </button>
-                <div className={styles.dots} role="tablist" aria-label={`${title} slides`}>
+                <div className={styles.dots}>
                   {images!.map((_, i) => (
                     <button
                       key={i}
                       type="button"
-                      role="tab"
-                      aria-selected={i === activeImage}
-                      aria-label={`Show slide ${i + 1} of ${images!.length}`}
+                      aria-label={`Show image ${i + 1} of ${images!.length}`}
                       className={`${styles.dot} ${i === activeImage ? styles.dotActive : ''}`}
                       onClick={() => setActiveImage(i)}
                     />
@@ -121,49 +126,71 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 </div>
               </>
             )}
-          </>
-        ) : (
-          <div className={styles.mediaFallback} aria-hidden="true">
-            {title.charAt(0)}
+
+            <span className={styles.statusBadge} data-status={status}>
+              {statusLabel ?? STATUS_LABELS[status]}
+            </span>
           </div>
         )}
-        <span className={styles.statusBadge} data-status={status}>
-          {statusLabel ?? STATUS_LABELS[status]}
-        </span>
-      </div>
 
-      <div className={styles.body}>
-        <p className={styles.eyebrow}>
-          {CATEGORY_LABELS[category]}
-          {period ? ` · ${period}` : ''}
-        </p>
-        <h3 className={styles.title}>{title}</h3>
-        <p className={styles.tagline}>{tagline}</p>
-        <p className={styles.description}>{description}</p>
-        {highlights && highlights.length > 0 && (
-          <ul className={styles.highlights}>
-            {highlights.map((h) => (
-              <li key={h}>{h}</li>
+        <div className={styles.body}>
+          <p className={styles.eyebrow}>
+            {CATEGORY_LABELS[category]}
+            {period ? ` · ${period}` : ''}
+          </p>
+          <h3 className={styles.title}>{title}</h3>
+
+          {expanded ? (
+            <div className={styles.details} id={detailsId}>
+              <p className={styles.description}>{description}</p>
+              {highlights && highlights.length > 0 && (
+                <ul className={styles.highlights}>
+                  {highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ) : (
+            <p className={styles.tagline}>{tagline}</p>
+          )}
+
+          <ul className={styles.stack} aria-label="Technologies used">
+            {stack.map((tech) => (
+              <TechTag key={tech} name={tech} />
             ))}
           </ul>
-        )}
 
-        <ul className={styles.stack} aria-label="Technologies used">
-          {stack.map((tech) => (
-            <TechTag key={tech} name={tech} />
-          ))}
-        </ul>
+          <div className={styles.footer}>
+            {linkEntries.length > 0 && (
+              <div className={styles.links}>
+                {linkEntries.map(([key, href]) => (
+                  <a key={key} href={href} target="_blank" rel="noreferrer noopener" className={styles.link}>
+                    {LINK_LABELS[key]} <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            )}
 
-        {linkEntries.length > 0 && (
-          <div className={styles.links}>
-            {linkEntries.map(([key, href]) => (
-              <a key={key} href={href} target="_blank" rel="noreferrer noopener" className={styles.link}>
-                {LINK_LABELS[key]} <span aria-hidden="true">↗</span>
-              </a>
-            ))}
+            <button
+              type="button"
+              className={styles.toggle}
+              aria-expanded={expanded}
+              aria-controls={detailsId}
+              onClick={() => setExpanded((v) => !v)}
+            >
+              {expanded ? 'Hide details' : 'Show details'}
+              <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true">
+                ▾
+              </span>
+            </button>
           </div>
-        )}
-      </div>
-    </article>
+        </div>
+      </article>
+
+      {modalOpen && hasImages && (
+        <MediaModal items={images!} startIndex={activeImage} title={title} onClose={() => setModalOpen(false)} />
+      )}
+    </>
   );
 }
