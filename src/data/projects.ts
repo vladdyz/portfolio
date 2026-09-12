@@ -75,7 +75,7 @@ export const projects: Project[] = [
       '("fragments"), backed by AWS S3 and DynamoDB, paired with a companion Fragments-UI client that ' +
       'authenticates through Amazon Cognito. Both services are independently containerized and shipped ' +
       'through their own CI/CD pipelines to Amazon ECR/ECS.',
-    stack: ['Node.js', 'Express', 'AWS S3', 'DynamoDB', 'ECS/ECR', 'Cognito', 'Docker', 'GitHub Actions', 'Jest'],
+    stack: ['Node.js', 'Express', 'AWS', 'S3', 'DynamoDB', 'ECS', 'ECR', 'Cognito', 'CloudWatch', 'Docker', 'GitHub Actions', 'Jest'],
     highlights: [
       'Two independently pipelined services (API & UI) wired together through Cognito auth',
       'Automated build & deploy to Amazon ECR/ECS on every push',
@@ -110,7 +110,7 @@ export const projects: Project[] = [
       'This project demonstrates a full-stack location-based review platform architecture. ' +
       'The underlying design can be adapted to support other location-based domains ' +
       'such as restaurants, hotels, museums, heritage sites, or attractions,',
-    stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'Jest', 'Supertest', 'GitHub Actions'],
+    stack: ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'Jest', 'Supertest', 'GitHub Actions', 'Cloudinary'],
     highlights: [
       '42 passing tests in CI (Jest, Supertest, mongodb-memory-server) with ~80% coverage',
       'Lazy-loaded pagination via the Fetch API and IntersectionObserver',
@@ -169,7 +169,7 @@ export const projects: Project[] = [
       'A Unity/C# tactical roguelike military shooter where every mission is assembled from node-graph level templates, ' +
       'emphasizing replayability (no two playthroughs are the same) and strategic gameplay. Built as a capstone project, serving as lead designer, ' +
       'programmer, and QA tester. ',
-    stack: ['Unity', 'C#', 'Procedural generation'],
+    stack: ['Unity', 'C#', 'Procedural Generation'],
     highlights: [
       'Node-graph template system drives procedural level generation',
       'Solo end-to-end ownership: design, implementation, and QA',
@@ -211,7 +211,7 @@ export const projects: Project[] = [
       'Self-Driving Car Simulator. A preprocessing and augmentation pipeline prepares the dataset before ' +
       'training an NVIDIA-style end-to-end CNN, using ELU activation for smoother convergence. The exported ' +
       'model drives the simulator in real time.',
-    stack: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'NumPy', 'Pandas', 'Jupyter', 'Conda'],
+    stack: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'NumPy', 'pandas', 'Jupyter', 'Conda'],
     highlights: [
       'Preprocessing pipeline: isolating the road area, YUV color conversion, Gaussian blur, and resize to the NVIDIA 200x66x3 input shape',
       'Random data augmentation (flip, pan, zoom, rotate, brightness, contrast) to improve generalization from a limited driving dataset',

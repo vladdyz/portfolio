@@ -8,7 +8,7 @@ import styles from './About.module.css';
 const SKILL_GROUPS: { label: string; skills: string[] }[] = [
   { label: 'Languages', skills: ['C', 'C++', 'Python', 'JavaScript', 'TypeScript', 'PostgreSQL']},
   { label: 'Web', skills: ['MongoDB', 'Express', 'React', 'Node.js', 'Next.js', 'Tailwind', 'Bootstrap'] },
-  { label: 'Cloud & DevOps', skills: ['AWS', 'ECS', 'S3', 'Cloudwatch', 'Docker', 'CI/CD', 'GitHub Actions'] },
+  { label: 'Cloud & DevOps', skills: ['AWS', 'ECS', 'S3', 'CloudWatch', 'Docker', 'CI/CD', 'GitHub Actions'] },
   { label: 'Quality Assurance', skills: ['Jest', 'Cypress', 'Hurl', 'Supertest', 'Jira']},
   { label: 'Game Dev', skills: ['Unity', 'Unreal Engine 5'] },
   { label: 'Mobile', skills: ['Kotlin', 'Android Studio'] },
