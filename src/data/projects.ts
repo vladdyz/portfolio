@@ -240,7 +240,7 @@ export const projects: Project[] = [
       'A native Android e-commerce application built in Kotlin over a Room/SQLite catalogue ' +
       'of shoes and shoe accessory products. Browse the inventory dynamically through Adapter Pattern and RecyclerViews, ' +
       'search and filter for specific items, and build a responsive cart whose ' +
-      'quantities and totals stay persistent as the user moves across across screens.' +
+      'quantities and totals stay persistent as the user moves across across screens. ' +
       'All database access runs off the main thread on a shared executor with results marshalled back to the UI thread. ',
     stack: ['Kotlin', 'Android', 'Room', 'SQLite', 'RecyclerView', 'Coil', 'Material Design 3', 'Gradle'],
     highlights: [ 
