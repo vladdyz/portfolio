@@ -42,9 +42,13 @@ import {
   SiCondaforge,
   SiApachemaven,
   SiHibernate,
+  SiSqlite,
+  SiMaterialdesign,
+  SiAndroid,
+  SiGradle
 } from 'react-icons/si';
 
-import { VscGear, VscTerminal, VscBeaker, VscGitBranchCompact} from 'react-icons/vsc';
+import { VscGear, VscTerminal, VscBeaker, VscGitBranchCompact, VscDatabase, VscListSelection} from 'react-icons/vsc';
 
 import AWSIconComponent from 'react-aws-icons/dist/aws/logo/AWS';
 import CloudWatchIconComponent from 'react-aws-icons/dist/aws/logo/CloudWatch';
@@ -57,7 +61,7 @@ import CognitoComponent from 'react-aws-icons/dist/aws/logo/Cognito'
 // Java does not have a simple icon due to trademark
 import { DiJava } from "react-icons/di";
 
-import {FaLock, FaTerminal, FaWindowMaximize, FaSyringe, FaGhost} from "react-icons/fa";
+import {FaLock, FaTerminal, FaWindowMaximize, FaSyringe, FaGhost, FaImage} from "react-icons/fa";
 
 import { HiH2 } from "react-icons/hi2"; 
 
@@ -147,6 +151,15 @@ export const TECH_ICONS: Record<string, IconType> = {
   Guice: FaSyringe,
   H2: HiH2,
   Jotai: FaGhost,
+  Android: SiAndroid,
+  Room: VscDatabase,
+  SQLite: SiSqlite,
+  RecyclerView: VscListSelection,
+  Coil: FaImage,
+  'Material Design 3': SiMaterialdesign,
+  Gradle: SiGradle,
+
+
 
   AWS: AWSIcon,
   S3: S3Icon,

@@ -13,6 +13,7 @@ export interface VideoMediaItem {
   type: 'video';
   src: string;    // the video itself
   poster: string; // thumbnail shown before play
+  fit?: 'cover' | 'contain';
 }
 
 export type MediaItem = string | VideoMediaItem;
@@ -228,6 +229,30 @@ export const projects: Project[] = [
     },
     status: 'source-only',
     statusLabel: 'Source + demo video',
+  },
+  {
+    id: 'sole-mates',
+    title: 'Sole Mates',
+    category: 'repository',
+    images: [ { type: 'video', src: `${BASE}videos/demo.mp4`, poster: `${BASE}images/demo-poster.jpg` }],
+    tagline: 'Native Android storefront with a Room-backed catalogue, SQL-level search and filtering, and a database-persisted cart.',
+    description: 
+      'A native Android e-commerce application built in Kotlin over a Room/SQLite catalogue ' +
+      'of shoes and shoe accessory products. Browse the inventory dynamically through Adapter Pattern and RecyclerViews, ' +
+      'search and filter for specific items, and build a responsive cart whose ' +
+      'quantities and totals stay responsive and persistent as the user moves across across screens.' +
+      'All database access runs off the main thread on a shared executor with results marshalled back to the UI thread.',
+    stack: ['Kotlin', 'Android', 'Room', 'SQLite', 'RecyclerView', 'Coil', 'Material Design 3', 'Gradle'],
+    highlights: [ 
+      'Full shopping flow: browse a catalogue, search and filter by category, add to cart, and check out with a running total',
+      'Search and category filters run as SQL queries against the database, not against an already-loaded list',
+      'Cart state and totals (subtotal, tax, total) stay synchronized across screens as items and quantities change',
+      'All database reads and writes run off the main thread; adapters stay UI-only',
+      '~50 seeded products across 11 categories, with images loaded from remote URLs via Coil'
+    ],
+    links: { repo: "https://github.com/vladdyz/SoleMates" },
+    status: 'source-only',
+    statusLabel: 'Source',
   },
    {
     id: 'come-on-inn',

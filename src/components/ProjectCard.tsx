@@ -1,5 +1,5 @@
 import { useState, type MouseEvent } from 'react';
-import type { Project, ProjectLinks, MediaItem } from '../data/projects';
+import type { Project, ProjectLinks, MediaItem, VideoMediaItem } from '../data/projects';
 import { CATEGORY_LABELS, STATUS_LABELS } from '../data/projects';
 import TechTag from './TechTag';
 import MediaModal from './MediaModal';
@@ -8,6 +8,7 @@ import styles from './ProjectCard.module.css';
 interface ProjectCardProps {
   project: Project;
 }
+
 
 const LINK_LABELS: Record<keyof ProjectLinks, string> = {
   demo: 'Live demo',
@@ -19,7 +20,11 @@ const LINK_LABELS: Record<keyof ProjectLinks, string> = {
   tools: 'Tools',
 };
 
-function isVideo(item: MediaItem): item is { type: 'video'; src: string; poster: string } {
+// function isVideo(item: MediaItem): item is { type: 'video'; src: string; poster: string; fit?: 'cover' | 'contain' } {
+//   return typeof item !== 'string' && item.type === 'video';
+// }
+
+function isVideo(item: MediaItem): item is VideoMediaItem {
   return typeof item !== 'string' && item.type === 'video';
 }
 
@@ -68,14 +73,28 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <div className={styles.media}>
             {activeItem ? (
               isVideo(activeItem) ? (
-                <video
-                  className={styles.image}
-                  src={activeItem.src}
-                  poster={activeItem.poster}
-                  controls
-                  playsInline
-                  preload="none"
-                />
+                // Videos show their poster here and play in the modal instead of
+                // inline: that keeps every card thumbnail a uniform 16:9 and lets
+                // portrait clips play at full size rather than squeezed into a
+                // landscape box. preload is never triggered on the card.
+                <button
+                  type="button"
+                  className={styles.mediaButton}
+                  onClick={() => setModalOpen(true)}
+                  aria-label={`Play video — ${title}`}
+                >
+                  {activeItem.fit === 'contain' && (
+                    <img src={activeItem.poster} alt="" aria-hidden="true" className={styles.blurBackdrop} />
+                  )}
+                  <img
+                    src={activeItem.poster}
+                    alt={`${title} video preview`}
+                    className={activeItem.fit === 'contain' ? styles.imageContain : styles.image}
+                  />
+                  <span className={styles.playButton} aria-hidden="true">
+                    ▶
+                  </span>
+                </button>
               ) : (
                 <button
                   type="button"
