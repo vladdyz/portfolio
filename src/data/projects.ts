@@ -165,7 +165,7 @@ export const projects: Project[] = [
     category: 'game',
       images: [ { type: 'video', src: `${BASE}videos/DS.mp4`, poster: `${BASE}images/PxF.png` }],
     //period: 'Sep 2025 – Present',
-    tagline: '2D tactical roguelike with procedurally generated missions, built solo as a capstone project.',
+    tagline: '2D tactical roguelike with procedurally generated missions, built as a capstone project.',
     description:
       'A Unity/C# tactical roguelike military shooter where every mission is assembled from node-graph level templates, ' +
       'emphasizing replayability (no two playthroughs are the same) and strategic gameplay. Built as a capstone project, serving as lead designer, ' +
