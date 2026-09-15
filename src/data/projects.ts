@@ -125,7 +125,7 @@ export const projects: Project[] = [
     ],
     links: {
       demo: 'https://offroadadventures.onrender.com/', 
-      repo: 'https://github.com/vladdyz/offroad-adventures', 
+      repo: 'https://github.com/vladdyz/offroadadventures', 
     },
     status: 'live',
   },
