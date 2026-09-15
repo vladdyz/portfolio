@@ -245,7 +245,8 @@ export const projects: Project[] = [
     stack: ['Kotlin', 'Android', 'Room', 'SQLite', 'RecyclerView', 'Coil', 'Material Design 3', 'Gradle'],
     highlights: [ 
       'Full shopping flow: browse a catalogue, search and filter by category, add to cart, and check out with a running total',
-      'Search and category filters run as SQL queries against the database, not against an already-loaded list',
+      'Responsive ConstraintLayout efficiently displaying dynamic product catalogue and cart using RecyclerView',
+      'Search and category filters run as SQL queries against the database and not against an already-loaded list',
       'Cart state and totals (subtotal, tax, total) stay synchronized across screens as items and quantities change',
       'All database reads and writes run off the main thread; adapters stay UI-only',
       '~50 seeded products across 11 categories, with images loaded from remote URLs via Coil'
