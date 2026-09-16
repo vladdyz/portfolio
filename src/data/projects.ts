@@ -26,6 +26,7 @@ export interface ProjectLinks {
   itch?: string;    // itch.io page (games)
   download?: string; // build/installer download (GitHub Releases, etc.)
   tools?: string; // additional tools/scripts related to the project
+  docs?: string;  // PDF opened in an in-page modal viewer (for CNN Self Driving Car)
 }
 
 export interface Project {
@@ -226,6 +227,7 @@ export const projects: Project[] = [
     links: {
       repo: 'https://github.com/vladdyz/Self-Driving-Car-Simulator',
       video: 'https://youtu.be/tD7LDySRsUQ',
+      docs: `${BASE}documents/self-driving-car-documentation.pdf`,
     },
     status: 'source-only',
     statusLabel: 'Source + demo video',

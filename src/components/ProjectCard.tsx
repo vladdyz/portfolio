@@ -3,6 +3,7 @@ import type { Project, ProjectLinks, MediaItem, VideoMediaItem } from '../data/p
 import { CATEGORY_LABELS, STATUS_LABELS } from '../data/projects';
 import TechTag from './TechTag';
 import MediaModal from './MediaModal';
+import DocModal from './DocModal';
 import styles from './ProjectCard.module.css';
 
 interface ProjectCardProps {
@@ -18,6 +19,7 @@ const LINK_LABELS: Record<keyof ProjectLinks, string> = {
   itch: 'Play on itch.io',
   download: 'Download',
   tools: 'Tools',
+  docs: 'Documentation'
 };
 
 // function isVideo(item: MediaItem): item is { type: 'video'; src: string; poster: string; fit?: 'cover' | 'contain' } {
@@ -34,6 +36,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   const [expanded, setExpanded] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [docOpen, setDocOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
   const hasImages = Boolean(images && images.length > 0);
@@ -183,11 +186,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <div className={styles.footer}>
             {linkEntries.length > 0 && (
               <div className={styles.links}>
-                {linkEntries.map(([key, href]) => (
-                  <a key={key} href={href} target="_blank" rel="noreferrer noopener" className={styles.link}>
-                    {LINK_LABELS[key]} <span aria-hidden="true">↗</span>
-                  </a>
-                ))}
+                {linkEntries.map(([key, href]) =>
+                  key === 'docs' ? (
+                    // Opens in an in-page viewer rather than navigating away.
+                    <button key={key} type="button" className={styles.link} onClick={() => setDocOpen(true)}>
+                      {LINK_LABELS[key]} <span aria-hidden="true">⤢</span>
+                    </button>
+                  ) : (
+                    <a key={key} href={href} target="_blank" rel="noreferrer noopener" className={styles.link}>
+                      {LINK_LABELS[key]} <span aria-hidden="true">↗</span>
+                    </a>
+                  )
+                )}
               </div>
             )}
 
@@ -209,6 +219,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
       {modalOpen && hasImages && (
         <MediaModal items={images!} startIndex={activeImage} title={title} onClose={() => setModalOpen(false)} />
+      )}
+      {docOpen && links.docs && (
+        <DocModal src={links.docs} title={title} onClose={() => setDocOpen(false)} />
       )}
     </>
   );
