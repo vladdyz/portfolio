@@ -77,7 +77,7 @@ export const projects: Project[] = [
       '("fragments"), backed by AWS S3 and DynamoDB, paired with a companion Fragments-UI client that ' +
       'authenticates through Amazon Cognito. Both services are independently containerized and shipped ' +
       'through their own CI/CD pipelines to Amazon ECR/ECS.',
-    stack: ['Node.js', 'Express', 'AWS', 'S3', 'DynamoDB', 'ECS', 'ECR', 'Cognito', 'CloudWatch', 'Docker', 'GitHub Actions', 'Jest'],
+    stack: ['Node.js', 'Express', 'AWS', 'S3', 'DynamoDB', 'ECS', 'ECR', 'Cognito', 'CloudWatch', 'Docker', 'GitHub Actions', 'Jest', 'JWT'],
     highlights: [
       'Two independently pipelined services (API & UI) wired together through Cognito auth',
       'Automated build & deploy to Amazon ECR/ECS on every push',
