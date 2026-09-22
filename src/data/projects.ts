@@ -219,7 +219,7 @@ export const projects: Project[] = [
       'Random data augmentation (flip, pan, zoom, rotate, brightness, contrast) to improve generalization from a limited driving dataset',
       'NVIDIA-style end-to-end CNN with five convolutional layers (5x5 and 3x3 kernels) feeding into fully-connected layers',
       'Chose ELU over ReLU for smoother gradients near zero, avoiding the dying neuron problem and achieving a lower validation MSE',
-      //'Modular architecture with a single entrypoint (application.py) supporting train, test, and simulate modes for independent parallel development',
+      'Modular architecture with a single entrypoint (application.py) supporting train, test, and simulate modes for independent parallel development',
       //'Diagnosed and resolved Conda/global Python path conflicts, an OpenCV install failure, and a NumPy/TensorFlow version mismatch by pinning exact dependency versions',
       //'Wrote a custom script to patch a newer Keras model config (batch_shape, DTypePolicy) back to an older format so it would run on a pinned TensorFlow 2.3.0 environment',
       'Modular single-entrypoint architecture (train, test, simulate modes) with Jupyter notebooks for dataset distribution analysis, training/validation loss and MAE visualization',
@@ -231,6 +231,48 @@ export const projects: Project[] = [
     },
     status: 'source-only',
     statusLabel: 'Source + demo video',
+  },
+  {
+    id: 'leafline',
+    title: 'LeafLine',
+    category: 'repository',
+    images: [ `${BASE}images/home.jpg`,
+         `${BASE}images/widget.jpg`,
+         `${BASE}images/budget.jpg`,
+         `${BASE}images/alert.jpg`,
+         `${BASE}images/history.jpg`,
+         `${BASE}images/notifications.jpg`,
+     ],
+    tagline:
+      'Offline Android expense tracker in Flutter and Kotlin, with on-device receipt text recognition and a home screen widget.',
+    description:
+      'LeafLine is a mobile budget tracker geared towards miscellaneous expenses, to help you stop spending ' +
+      'so much of your budget on coffee and daily brunches. It manages the small purchases that quietly take ' +
+      'a large bite out of your savings, with weekly budgets, historical tracking, warnings as you approach ' +
+      'or exceed a budget, automatic receipt parsing via an on-device machine learning kit, a home screen ' +
+      'widget, and an app lock to keep shoulder surfers out of your purchases. ' +
+      'Built almost entirely in Flutter, with Kotlin handling receipt ' +
+      'text recognition and the widget. It works fully offline and stores everything locally, so it is just ' +
+      'as usable in a subway, an office basement, or the remote Canadian wilderness.',
+    stack: ['Flutter', 'Dart', 'Kotlin', 'Android', 'SQLite', 'Riverpod', 'ML Kit', 'Material 3', 'GitHub Actions', 'JUnit'],
+    highlights: [
+      'Flutter UI over a Kotlin native layer, bridged by two documented MethodChannels: ML Kit for on-device receipt text recognition, and an AppWidgetProvider for the home screen widget',
+      'Transparent scoring heuristic ranks candidate totals off a receipt and offers them as tappable chips rather than auto-filling, since a wrong guess should cost one tap and not create a wrong expense',
+      '465 Dart tests and 10 Kotlin tests at 83% line coverage, including hostile-data and accessibility suites that render every screen at 200% text scale',
+      //'Every platform capability sits behind a Dart interface with a fake, so swapping a hardcoded Kotlin stub for real ML Kit touched zero Dart files — and an iOS port would change exactly one',
+      //'Versioned SQLite schema with three tested migrations; weekly budgets are materialised as rows so history stays frozen when the current default changes',
+      'Tested against WCAG 2.2 AA criteria with automated tap-target, screen-reader-label, contrast and text-scaling checks running in CI',
+      'Fully offline — no account, no server, no telemetry — with configurable photo retention and an optional biometric app lock',
+      //'21 architecture decision records documenting why each non-obvious choice was made',
+    ],
+    links: {
+      repo: 'https://github.com/vladdyz/leafline',
+      download: 'https://github.com/vladdyz/leafline/releases',
+      video: 'https://www.youtube.com/shorts/QKHf3tJRcFg',
+      // docs: `${BASE}documents/leafline-technical.pdf`,   // TODO later
+    },
+    status: 'download-to-play',
+    statusLabel: 'Download APK + demo video',
   },
   {
     id: 'sole-mates',

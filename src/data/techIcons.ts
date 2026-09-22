@@ -45,7 +45,10 @@ import {
   SiSqlite,
   SiMaterialdesign,
   SiAndroid,
-  SiGradle
+  SiGradle,
+  SiFlutter,
+  SiDart,
+  SiJunit5
 } from 'react-icons/si';
 
 import { VscGear, VscTerminal, VscBeaker, VscGitBranchCompact, VscDatabase, VscListSelection} from 'react-icons/vsc';
@@ -61,7 +64,7 @@ import CognitoComponent from 'react-aws-icons/dist/aws/logo/Cognito'
 // Java does not have a simple icon due to trademark
 import { DiJava } from "react-icons/di";
 
-import {FaLock, FaTerminal, FaWindowMaximize, FaSyringe, FaGhost, FaImage} from "react-icons/fa";
+import {FaLock, FaTerminal, FaWindowMaximize, FaSyringe, FaGhost, FaImage, FaWater} from "react-icons/fa";
 
 import { HiH2 } from "react-icons/hi2"; 
 
@@ -157,7 +160,17 @@ export const TECH_ICONS: Record<string, IconType> = {
   RecyclerView: VscListSelection,
   Coil: FaImage,
   'Material Design 3': SiMaterialdesign,
+  'Material 3': SiMaterialdesign,
   Gradle: SiGradle,
+  Flutter: SiFlutter,
+  'ML Kit': SiScikitlearn,
+  Riverpod: FaWater,
+  Dart: SiDart,
+  JUnit: SiJunit5,
+
+  
+
+
 
 
 
