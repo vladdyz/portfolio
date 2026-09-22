@@ -257,12 +257,12 @@ export const projects: Project[] = [
     stack: ['Flutter', 'Dart', 'Kotlin', 'Android', 'SQLite', 'Riverpod', 'ML Kit', 'Material 3', 'GitHub Actions', 'JUnit'],
     highlights: [
       'Flutter UI over a Kotlin native layer, bridged by two documented MethodChannels: ML Kit for on-device receipt text recognition, and an AppWidgetProvider for the home screen widget',
-      'Transparent scoring heuristic ranks candidate totals off a receipt and offers them as tappable chips rather than auto-filling, since a wrong guess should cost one tap and not create a wrong expense',
+      'Transparent scoring heuristic ranks candidate totals off a receipt and offers them as tappable chips rather than auto-filling',
       '465 Dart tests and 10 Kotlin tests at 83% line coverage, including hostile-data and accessibility suites that render every screen at 200% text scale',
       //'Every platform capability sits behind a Dart interface with a fake, so swapping a hardcoded Kotlin stub for real ML Kit touched zero Dart files — and an iOS port would change exactly one',
       //'Versioned SQLite schema with three tested migrations; weekly budgets are materialised as rows so history stays frozen when the current default changes',
       'Tested against WCAG 2.2 AA criteria with automated tap-target, screen-reader-label, contrast and text-scaling checks running in CI',
-      'Fully offline — no account, no server, no telemetry — with configurable photo retention and an optional biometric app lock',
+      'Fully offline — no account, no server, no telemetry — with configurable photo retention, notifications, and an optional biometric app lock',
       //'21 architecture decision records documenting why each non-obvious choice was made',
     ],
     links: {
