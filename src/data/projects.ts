@@ -327,6 +327,7 @@ export const projects: Project[] = [
     links: {
       repo: 'https://github.com/vladdyz/ComeOnInn',
       video: 'https://www.youtube.com/watch?v=eSIzd_ONONo', 
+      docs: `${BASE}documents/come-on-inn.pdf`,
     },
     status: 'source-only',
     statusLabel: 'Source + demo video',
